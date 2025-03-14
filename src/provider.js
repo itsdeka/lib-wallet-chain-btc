@@ -382,6 +382,7 @@ class Electrum extends ConnectionManager {
 
       this._client.once('close', () => {
         resolve()
+        this.setStatus(STATUS.DISCONNECTED)
       })
       this._client.end()
     })
