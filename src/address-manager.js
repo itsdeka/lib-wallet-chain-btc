@@ -167,6 +167,13 @@ class AddressManager {
     await this.history.put(`i:${tx.height}:${tx.txid}`, tx)
     await this.history.put(`tx:${tx.txid}`, tx.height)
   }
+  
+  async updateTxLabel (opts) {
+    const tx = await this._getDbTx(opts.txid)
+    if (!tx) throw new Error('Transaction not found')
+    tx.label = opts.label
+    await this.storeTx(tx)
+  }
 
   getMempoolTx () {
     return this.history.get('i:' + 0)

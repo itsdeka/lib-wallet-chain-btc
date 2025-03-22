@@ -298,6 +298,17 @@ class WalletPayBitcoin extends WalletPay {
     return p
   }
 
+  /**
+   * @description add transaction description
+   * @param {Object} opts - options
+   * @param {String} opts.txid - transaction id
+   * @param {String} opts.label - transaction label
+   * @returns {Promise}
+   **/
+  async addTransactionDescription(opts) {
+    await this._syncManager.updateTxLabel(opts)
+  }
+
   isValidAddress (opts, address) {
     return this._makeRequest('blockchain.address.get_balance', [address])
   }
