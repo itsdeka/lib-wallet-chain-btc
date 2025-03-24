@@ -500,6 +500,13 @@ class SyncManager extends EventEmitter {
   getTransactions (opts, fn) {
     return this._addr.getTransactions(opts, fn)
   }
+
+  /**
+   * @description update label of a transaction in db
+  */
+  async updateTxLabel (opts) {
+    this._addr.updateTxLabel(opts)
+  }
 }
 
 module.exports = SyncManager
